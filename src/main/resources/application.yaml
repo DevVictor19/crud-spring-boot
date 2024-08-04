@@ -8,6 +8,6 @@ spring:
     password: "admin123"
   jpa:
     hibernate:
-      ddl_auto: update
+      ddl_auto: none
     show-sql: false
     open-in-view: false
