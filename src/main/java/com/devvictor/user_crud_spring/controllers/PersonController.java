@@ -1,5 +1,7 @@
 package com.devvictor.user_crud_spring.controllers;
 
+import com.devvictor.user_crud_spring.dtos.CreatePersonDto;
+import com.devvictor.user_crud_spring.dtos.UpdatePersonDto;
 import com.devvictor.user_crud_spring.models.Person;
 import com.devvictor.user_crud_spring.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +20,10 @@ public class PersonController {
     private PersonService personService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Person> create(@RequestBody Person person) {
+    public ResponseEntity<Person> create(@RequestBody CreatePersonDto dto) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(personService.create(person));
+                .body(personService.create(dto));
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -34,9 +36,10 @@ public class PersonController {
         return personService.findById(id);
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person update(@RequestBody Person person) {
-        return personService.update(person);
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Person update(@PathVariable(name = "id") Long id,
+                         @RequestBody UpdatePersonDto dto) {
+        return personService.update(id, dto);
     }
 
     @DeleteMapping(value = "/{id}")

@@ -1,6 +1,9 @@
 package com.devvictor.user_crud_spring.services;
 
+import com.devvictor.user_crud_spring.dtos.CreatePersonDto;
+import com.devvictor.user_crud_spring.dtos.UpdatePersonDto;
 import com.devvictor.user_crud_spring.exceptions.NotFoundException;
+import com.devvictor.user_crud_spring.mappers.ApplicationModelMapper;
 import com.devvictor.user_crud_spring.models.Person;
 import com.devvictor.user_crud_spring.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +19,10 @@ public class PersonService {
     @Autowired
     private PersonRepository repository;
 
-    public Person create(Person person) {
+    public Person create(CreatePersonDto dto) {
         logger.info("Create person");
 
-        return repository.save(person);
+        return repository.save(ApplicationModelMapper.parseObject(dto, Person.class));
     }
 
     public List<Person> findAll() {
@@ -35,16 +38,16 @@ public class PersonService {
                 .orElseThrow(() -> new NotFoundException("No records found for this id"));
     }
 
-    public Person update(Person person) {
+    public Person update(Long id, UpdatePersonDto dto) {
         logger.info("Update person");
 
-        Person entity = repository.findById(person.getId())
+        Person entity = repository.findById(id)
                 .orElseThrow(() -> new NotFoundException("No records found for this id"));
 
-        entity.setFirstName(person.getFirstName());
-        entity.setLastName(person.getLastName());
-        entity.setAddress(person.getAddress());
-        entity.setGender(person.getGender());
+        entity.setFirstName(dto.firstName());
+        entity.setLastName(dto.lastName());
+        entity.setAddress(dto.address());
+        entity.setGender(dto.gender());
 
         return repository.save(entity);
     }
