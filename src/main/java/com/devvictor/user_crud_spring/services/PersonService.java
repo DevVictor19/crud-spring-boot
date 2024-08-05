@@ -3,6 +3,7 @@ package com.devvictor.user_crud_spring.services;
 import com.devvictor.user_crud_spring.dtos.CreatePersonDto;
 import com.devvictor.user_crud_spring.dtos.UpdatePersonDto;
 import com.devvictor.user_crud_spring.exceptions.NotFoundException;
+import com.devvictor.user_crud_spring.exceptions.RequiredObjectIsNullException;
 import com.devvictor.user_crud_spring.mappers.ApplicationModelMapper;
 import com.devvictor.user_crud_spring.models.Person;
 import com.devvictor.user_crud_spring.repositories.PersonRepository;
@@ -22,6 +23,10 @@ public class PersonService {
     public Person create(CreatePersonDto dto) {
         logger.info("Create person");
 
+        if (dto == null) {
+            throw new RequiredObjectIsNullException();
+        }
+
         return repository.save(ApplicationModelMapper.parseObject(dto, Person.class));
     }
 
@@ -40,6 +45,10 @@ public class PersonService {
 
     public Person update(Long id, UpdatePersonDto dto) {
         logger.info("Update person");
+
+        if (dto == null) {
+            throw new RequiredObjectIsNullException();
+        }
 
         Person entity = repository.findById(id)
                 .orElseThrow(() -> new NotFoundException("No records found for this id"));
