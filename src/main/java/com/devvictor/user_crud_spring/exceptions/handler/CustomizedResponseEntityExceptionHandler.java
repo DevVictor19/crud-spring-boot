@@ -2,6 +2,7 @@ package com.devvictor.user_crud_spring.exceptions.handler;
 
 import com.devvictor.user_crud_spring.exceptions.ExceptionResponse;
 import com.devvictor.user_crud_spring.exceptions.NotFoundException;
+import com.devvictor.user_crud_spring.exceptions.RequiredObjectIsNullException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -42,5 +43,19 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         );
 
         return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(RequiredObjectIsNullException.class)
+    public final ResponseEntity<ExceptionResponse> handleRequiredObjectIsNull(
+            RequiredObjectIsNullException ex,
+            WebRequest request) {
+
+        ExceptionResponse exceptionResponse = new ExceptionResponse(
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false)
+        );
+
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 }
