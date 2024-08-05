@@ -39,7 +39,7 @@ public class PersonController {
 
     @PutMapping(value = "/{id}", consumes = { AppMediaType.JSON, AppMediaType.XML, AppMediaType.YAML }, produces = { AppMediaType.JSON, AppMediaType.XML, AppMediaType.YAML })
     public PersonResponseDto update(@PathVariable(name = "id") Long id,
-                         @RequestBody UpdatePersonDto dto) {
+                                    @RequestBody UpdatePersonDto dto) {
         return PersonPresenter.toResponseObject(personService.update(id, dto));
     }
 
