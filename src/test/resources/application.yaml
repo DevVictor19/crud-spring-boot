@@ -1,0 +1,17 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: "user-crud-spring"
+  datasource:
+    driver-class-name: "com.mysql.cj.jdbc.Driver"
+  jpa:
+    hibernate:
+      ddl_auto: none
+    show-sql: false
+    open-in-view: false
+
+spring-doc:
+  pathsToMatch: "/api/v1/**"
+  swagger-ui:
+    use-root-path: true
