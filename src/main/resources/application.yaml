@@ -11,3 +11,8 @@ spring:
       ddl_auto: none
     show-sql: false
     open-in-view: false
+
+spring-doc:
+  pathsToMatch: "/api/v1/**"
+  swagger-ui:
+    use-root-path: true
