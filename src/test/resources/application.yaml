@@ -1,3 +1,8 @@
+security:
+  jwt:
+    token:
+      secret-key: "uxfid3v4x1093ZceAXhgkoP94yLYFhEmJThvEZDCsdkMPfpaiu6afRgaJVoh7pVS"
+      expired-length: 3600000 # 1h in ms
 server:
   port: 8888
 spring:
