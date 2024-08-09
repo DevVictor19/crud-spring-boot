@@ -1,8 +1,8 @@
 package com.devvictor.user_crud_spring.controllers;
 
-import com.devvictor.user_crud_spring.dtos.CreatePersonDto;
-import com.devvictor.user_crud_spring.dtos.PersonResponseDto;
-import com.devvictor.user_crud_spring.dtos.UpdatePersonDto;
+import com.devvictor.user_crud_spring.dtos.person.CreatePersonDto;
+import com.devvictor.user_crud_spring.dtos.person.PersonResponseDto;
+import com.devvictor.user_crud_spring.dtos.person.UpdatePersonDto;
 import com.devvictor.user_crud_spring.presenters.PersonPresenter;
 import com.devvictor.user_crud_spring.services.PersonService;
 import com.devvictor.user_crud_spring.utils.AppMediaType;

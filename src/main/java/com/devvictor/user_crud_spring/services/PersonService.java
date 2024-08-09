@@ -1,7 +1,7 @@
 package com.devvictor.user_crud_spring.services;
 
-import com.devvictor.user_crud_spring.dtos.CreatePersonDto;
-import com.devvictor.user_crud_spring.dtos.UpdatePersonDto;
+import com.devvictor.user_crud_spring.dtos.person.CreatePersonDto;
+import com.devvictor.user_crud_spring.dtos.person.UpdatePersonDto;
 import com.devvictor.user_crud_spring.exceptions.NotFoundException;
 import com.devvictor.user_crud_spring.exceptions.RequiredObjectIsNullException;
 import com.devvictor.user_crud_spring.mappers.ApplicationModelMapper;
